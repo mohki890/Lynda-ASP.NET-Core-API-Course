@@ -12,9 +12,9 @@ namespace HPlusSportsAPI.Contracts
 
         IEnumerable<Product> GetAll();
 
-        Product Find(int key);
+        Product Find(string key);
 
-        Product Remove(int key);
+        Product Remove(string key);
 
         void Update(Product item);
     }
