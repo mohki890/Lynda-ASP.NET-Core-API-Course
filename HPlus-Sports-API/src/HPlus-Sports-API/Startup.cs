@@ -64,6 +64,8 @@ namespace HPlusSportsAPI
 
             app.UseApplicationInsightsExceptionTelemetry();
 
+            app.UseMiddleware<StackifyMiddleware.RequestTracerMiddleware>();
+
             app.UseMvc();
         }
     }

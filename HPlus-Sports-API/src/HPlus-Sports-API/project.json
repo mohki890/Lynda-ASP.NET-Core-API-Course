@@ -16,7 +16,8 @@
     "Microsoft.Extensions.Logging.Debug": "1.0.0",
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
     "Microsoft.EntityFrameworkCore.Tools": "1.0.0-preview2-final",
-    "Microsoft.EntityFrameworkCore.SqlServer.Design": "1.0.0"
+    "Microsoft.EntityFrameworkCore.SqlServer.Design": "1.0.0",
+    "StackifyMiddleware": "1.4.1"
   },
 
   "tools": {
