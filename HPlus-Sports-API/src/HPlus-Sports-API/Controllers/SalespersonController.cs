@@ -20,7 +20,7 @@ namespace HPlusSportsAPI.Controllers
 
         public ISalespersonRepository SalespersonItems { get; set; }
 
-        // GET: api/values
+        // GET: api/Salesperson
         [HttpGet]
         public IEnumerable<Salesperson> GetAll() => SalespersonItems.GetAll();
 

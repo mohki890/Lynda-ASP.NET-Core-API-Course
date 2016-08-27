@@ -20,7 +20,7 @@ namespace HPlusSportsAPI.Controllers
 
         public IOrderRepository OrderItems { get; set; }
 
-        // GET: api/values
+        // GET: api/Order
         [HttpGet]
         public IEnumerable<Order> GetAll() => OrderItems.GetAll();
 
