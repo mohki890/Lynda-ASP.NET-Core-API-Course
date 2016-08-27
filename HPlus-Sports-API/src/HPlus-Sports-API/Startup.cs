@@ -50,6 +50,8 @@ namespace HPlusSportsAPI
             services.AddSingleton<IOrderItemRepository, OrderItemRepository>();
             services.AddSingleton<IProductRepository, ProductRepository>();
             services.AddSingleton<ISalespersonRepository, SalespersonRepository>();
+
+            services.AddMvcCore().AddJsonFormatters(j => j.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
