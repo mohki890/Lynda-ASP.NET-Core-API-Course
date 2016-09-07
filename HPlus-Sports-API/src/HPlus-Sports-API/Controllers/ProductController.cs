@@ -64,6 +64,24 @@ namespace HPlusSportsAPI.Controllers
             return new NoContentResult();
         }
 
+        [HttpPut]
+        public IActionResult Update([FromBody] Product item)
+        {
+            if (item == null)
+            {
+                return BadRequest();
+            }
+
+            var Product = ProductItems.Find(item.ProductId);
+            if (Product == null)
+            {
+                return NotFound();
+            }
+
+            ProductItems.Update(item);
+            return new NoContentResult();
+        }
+
         [HttpDelete("{id}")]
         public void Delete(string id)
         {

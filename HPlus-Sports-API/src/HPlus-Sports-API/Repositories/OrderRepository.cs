@@ -24,12 +24,12 @@ namespace HPlusSportsAPI.Repositories
             db.SaveChanges();
         }
 
-        public Order Find(int key) => db.Order.Include(order => order.OrderItem).Include(order => order.Customer).Single(a => a.CustomerId == key);
+        public Order Find(int key) => db.Order.Include(order => order.OrderItem).Include(order => order.Customer).Single(a => a.OrderId == key);
 
         public Order Remove(int key)
         {
             Order item;
-            item = db.Order.Single(a => a.CustomerId == key);
+            item = db.Order.Single(a => a.OrderId == key);
             db.Order.Remove(item);
             db.SaveChanges();
             return item;

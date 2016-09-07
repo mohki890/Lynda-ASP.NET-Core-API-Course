@@ -54,8 +54,26 @@ namespace HPlusSportsAPI.Controllers
                 return BadRequest();
             }
 
-            var Artist = CustomerItems.Find(id);
-            if (Artist == null)
+            var Customer = CustomerItems.Find(id);
+            if (Customer == null)
+            {
+                return NotFound();
+            }
+
+            CustomerItems.Update(item);
+            return new NoContentResult();
+        }
+
+        [HttpPut]
+        public IActionResult Update([FromBody] Customer item)
+        {
+            if (item == null)
+            {
+                return BadRequest();
+            }
+
+            var Customer = CustomerItems.Find(item.CustomerId);
+            if (Customer == null)
             {
                 return NotFound();
             }

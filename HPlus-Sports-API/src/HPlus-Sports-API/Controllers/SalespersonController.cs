@@ -64,6 +64,24 @@ namespace HPlusSportsAPI.Controllers
             return new NoContentResult();
         }
 
+        [HttpPut]
+        public IActionResult Update([FromBody] Salesperson item)
+        {
+            if (item == null)
+            {
+                return BadRequest();
+            }
+
+            var Salesperson = SalespersonItems.Find(item.SalespersonId);
+            if (Salesperson == null)
+            {
+                return NotFound();
+            }
+
+            SalespersonItems.Update(item);
+            return new NoContentResult();
+        }
+
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

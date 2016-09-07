@@ -37,8 +37,14 @@ namespace HPlusSportsAPI.Repositories
 
         public void Update(Customer item)
         {
-            db.Customer.Update(item);
-            db.SaveChanges();
+            try
+            {
+                db.Customer.Update(item);
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+            }
         }
     }
 }
