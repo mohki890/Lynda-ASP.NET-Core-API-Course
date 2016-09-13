@@ -10,10 +10,11 @@ namespace HPlusSportsAPI.Repositories
 {
     public class CustomerRepository : ICustomerRepository
     {
-        private H_Plus_SportsContext db = new H_Plus_SportsContext();
+        private H_Plus_SportsContext db;
 
-        public CustomerRepository()
+        public CustomerRepository(H_Plus_SportsContext context)
         {
+            db = context;
         }
 
         public IEnumerable<Customer> GetAll() => db.Customer;

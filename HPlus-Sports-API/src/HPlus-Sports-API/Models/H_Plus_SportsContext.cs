@@ -6,10 +6,14 @@ namespace HPlusSportsAPI.Models
 {
     public partial class H_Plus_SportsContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Server=.;Database=H_Plus_Sports;Trusted_Connection=True;");
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer(@"Server=.;Database=H_Plus_Sports;Trusted_Connection=True;");
+        //}
+
+        public H_Plus_SportsContext(DbContextOptions<H_Plus_SportsContext> options)
+            : base(options)
+        { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

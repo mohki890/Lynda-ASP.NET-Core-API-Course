@@ -10,10 +10,11 @@ namespace HPlusSportsAPI.Repositories
 {
     public class OrderItemRepository : IOrderItemRepository
     {
-        private H_Plus_SportsContext db = new H_Plus_SportsContext();
+        private H_Plus_SportsContext db;
 
-        public OrderItemRepository()
+        public OrderItemRepository(H_Plus_SportsContext context)
         {
+            db = context;
         }
 
         public IEnumerable<OrderItem> GetAll() => db.OrderItem;
