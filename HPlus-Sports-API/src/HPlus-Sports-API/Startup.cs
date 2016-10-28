@@ -3,6 +3,7 @@ using HPlusSportsAPI.Models;
 using HPlusSportsAPI.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -41,7 +42,17 @@ namespace HPlusSportsAPI
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
 
-            services.AddMvc();
+            services.AddMvc(options =>
+            {
+                options.CacheProfiles.Add("PrivateCache",
+                    new CacheProfile()
+                    {
+                        Duration = 60,
+                        Location = ResponseCacheLocation.None
+                    });
+            });
+
+            services.AddMemoryCache();
 
             services.AddDbContext<H_Plus_SportsContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -57,14 +68,14 @@ namespace HPlusSportsAPI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            app.UseMiddleware<StackifyMiddleware.RequestTracerMiddleware>();
+
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
             app.UseApplicationInsightsRequestTelemetry();
 
             app.UseApplicationInsightsExceptionTelemetry();
-
-            app.UseMiddleware<StackifyMiddleware.RequestTracerMiddleware>();
 
             app.UseMvc();
         }

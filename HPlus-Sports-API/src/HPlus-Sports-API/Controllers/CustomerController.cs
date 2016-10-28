@@ -22,9 +22,12 @@ namespace HPlusSportsAPI.Controllers
 
         // GET: api/Customer
         [HttpGet]
+        [ResponseCache(Duration = 60)]
         public IEnumerable<Customer> GetAll() => CustomerItems.GetAll();
 
         [HttpGet("{id}", Name = "GetCustomer")]
+        //[ResponseCache(Duration = 60, Location = ResponseCacheLocation.Client)]
+        [ResponseCache(CacheProfileName = "PrivateCache")]
         public IActionResult GetById(int id)
         {
             var item = CustomerItems.Find(id);

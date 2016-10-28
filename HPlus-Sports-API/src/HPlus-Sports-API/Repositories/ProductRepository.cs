@@ -25,7 +25,7 @@ namespace HPlusSportsAPI.Repositories
             db.SaveChanges();
         }
 
-        public Product Find(string key) => db.Product.Include(product => product.OrderItem).Single(a => a.ProductId == key);
+        public Product Find(string key) => db.Product.Include(product => product.OrderItem).SingleOrDefault(a => a.ProductId == key);
 
         public Product Remove(string key)
         {

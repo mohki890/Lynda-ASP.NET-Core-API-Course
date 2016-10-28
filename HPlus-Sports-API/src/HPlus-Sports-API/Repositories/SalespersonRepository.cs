@@ -25,7 +25,7 @@ namespace HPlusSportsAPI.Repositories
             db.SaveChanges();
         }
 
-        public Salesperson Find(int key) => db.Salesperson.Include(salesperson => salesperson.Order).Single(a => a.SalespersonId == key);
+        public Salesperson Find(int key) => db.Salesperson.Include(salesperson => salesperson.Order).SingleOrDefault(a => a.SalespersonId == key);
 
         public Salesperson Remove(int key)
         {

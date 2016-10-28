@@ -1,6 +1,7 @@
 ﻿using HPlusSportsAPI.Contracts;
 using HPlusSportsAPI.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,12 @@ namespace HPlusSportsAPI.Controllers
     [Route("api/[controller]")]
     public class ProductController : Controller
     {
-        public ProductController(IProductRepository productItems)
+        private IMemoryCache _cache;
+
+        public ProductController(IProductRepository productItems, IMemoryCache memoryCache)
         {
             ProductItems = productItems;
+            _cache = memoryCache;
         }
 
         public IProductRepository ProductItems { get; set; }
